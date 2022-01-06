@@ -2,10 +2,10 @@
 {
     public class SecretBuilder
     {
-        private string _keyVaultName = Config.KEY_VAULT_NAME;
-        private string _tenantId = Config.TENANT_ID;
-        private string _clientId = Config.CLIENT_ID;
-        private string _clientSecret = Config.CLIENT_SECRET;
+        private string _keyVaultName = string.Empty;
+        private string _tenantId = string.Empty;
+        private string _clientId = string.Empty;
+        private string _clientSecret = string.Empty;
 
         public static SecretBuilder Novo()
         {

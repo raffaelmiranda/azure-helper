@@ -13,10 +13,10 @@ namespace Azure.Helper.KeyVault.Test
 
         public SecretTest()
         {
-            _keyVaultName = Config.KEY_VAULT_NAME;
-            _tenantId = Config.TENANT_ID;
-            _clientId = Config.CLIENT_ID;
-            _clientSecret = Config.CLIENT_SECRET;
+            _keyVaultName = "";
+            _tenantId = "";
+            _clientId = "";
+            _clientSecret = "";
         }
 
         [Fact]
