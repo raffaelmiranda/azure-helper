@@ -7,9 +7,6 @@ namespace ConsoleApp1
 {
     class Program
     {
-        
-      
-
         static void Main(string[] args, IConfiguration configuration)
         {
             //TODO: Implement Interface and read appsettings
