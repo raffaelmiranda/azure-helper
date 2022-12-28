@@ -18,6 +18,13 @@ namespace Azure.Helper.KeyVault
         private string _clientId = string.Empty;
         private string _clientSecret = string.Empty;
 
+        public Secret(string keyVaultName)
+        {
+
+            _token = new DefaultAzureCredential(false);
+            _client = new SecretClient(new Uri($"https://{keyVaultName}.vault.azure.net/"), _token);
+        }
+
         public Secret(string keyVaultName, string tenantId, string clientId, string clientSecret)
         {
 
