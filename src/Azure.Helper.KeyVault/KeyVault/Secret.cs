@@ -21,7 +21,7 @@ namespace Azure.Helper.KeyVault
         public Secret(string keyVaultName)
         {
 
-            _token = new DefaultAzureCredential(false);
+            _token = new DefaultAzureCredential();
             _client = new SecretClient(new Uri($"https://{keyVaultName}.vault.azure.net/"), _token);
         }
 
@@ -72,16 +72,27 @@ namespace Azure.Helper.KeyVault
         
         public Dictionary<string, string> GetSecrets()
         {
-            Dictionary<string, string> secrets = new Dictionary<string, string>();
-
-            foreach (var secretProperty in _client.GetPropertiesOfSecrets())
+            try
             {
-                KeyVaultSecret secret  = _client.GetSecret(secretProperty.Name);
+                Dictionary<string, string> secrets = new Dictionary<string, string>();
 
-                secrets.Add(secret.Name, secret.Value);
+                var secretsProperties = _client.GetPropertiesOfSecrets();
+
+                foreach (var secretProperty in secretsProperties)
+                {
+                    KeyVaultSecret secret = _client.GetSecret(secretProperty.Name);
+
+                    secrets.Add(secret.Name, secret.Value);
+                }
+
+                return secrets;
             }
+            catch (Exception ex)
+            {
 
-            return secrets;
+                throw;
+            }
+            
         }
 
         public void CreateUpdateSecret(string secretName, string value)

@@ -1,20 +1,35 @@
 ﻿using Azure.Helper.KeyVault;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 
-Secret keyVault = new Secret("");
+AzureKeyVault();
 
-GetSecret(keyVault);
+#region Azure KeyVAult
+void AzureKeyVault()
+{
+    Secret keyVault = new Secret("myKeyVaultName");
 
-GetSecrets(keyVault);
+    var operacao = "GetSecrets";
 
-CreateUpdateSecret(keyVault);
-
-DeleteSecretAndPurge(keyVault);
-
-UpdateSecretProperties(keyVault);
-
+    switch (operacao)
+    {
+        case "GetSecret":
+            GetSecret(keyVault);
+            break;
+        case "GetSecrets":
+            GetSecrets(keyVault);
+            break;
+        case "CreateSecret":
+            CreateUpdateSecret(keyVault);
+            break;
+        case "DeleteSecret":
+            DeleteSecretAndPurge(keyVault);
+            break;
+        case "UpdateSecret":
+            UpdateSecretProperties(keyVault);
+            break;
+    }
+}
 
 void GetSecret(Secret keyVault)
 {
@@ -75,3 +90,4 @@ void UpdateSecretProperties(Secret keyVault)
 
     Console.ReadLine();
 }
+#endregion
